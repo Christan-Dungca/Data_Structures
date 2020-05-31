@@ -69,12 +69,29 @@ class BST {
 
     return foundNode;
   }
+
+  search() {
+    const queue = [];
+    const nodesVisted = [];
+
+    queue.push(this.root);
+
+    while (queue.length) {
+      let visited = queue.shift();
+      nodesVisted.push(visited);
+
+      if (visited.right && visited.left) {
+        queue.push(visited.left);
+        queue.push(visited.right);
+      } else if (visited.left) {
+        queue.push(visited.left);
+      } else if (visited.right) {
+        queue.push(visited.right);
+      }
+    }
+
+    return nodesVisted;
+  }
 }
 
 var tree = new BST();
-// tree.insert(10);
-// tree.insert(15);
-// tree.insert(5);
-// tree.insert(20);
-// tree.insert(0);
-// tree.insert(25);
