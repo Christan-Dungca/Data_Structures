@@ -92,6 +92,28 @@ class BST {
 
     return nodesVisted;
   }
+
+  DFSPreOrder() {
+    var data = [];
+    function traverse(node) {
+      data.push(node.val);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return data;
+  }
+
+  DFSPostOrder() {
+    var data = [];
+    function traverse(node){
+      if(node.left) traverse(node.left);
+      if(node.right) traverse(node.right);
+      data.push(node.val)
+    }
+    traverse(this.root);
+    return data;
+  }
 }
 
 var tree = new BST();
