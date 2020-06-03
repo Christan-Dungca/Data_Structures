@@ -69,11 +69,11 @@ class BST {
 
     return foundNode;
   }
-
-  search() {
+  /*
+  //? Alternate Solution
+  BFS() {
     const queue = [];
     const nodesVisted = [];
-
     queue.push(this.root);
 
     while (queue.length) {
@@ -89,8 +89,24 @@ class BST {
         queue.push(visited.right);
       }
     }
-
     return nodesVisted;
+  }
+  */
+
+  BFS() {
+    let node = this.root; 
+    const data = [];
+    const queue = [];
+
+    queue.push(node);
+
+    while(queue.length){
+      node = queue.shift();
+      data.push(node.val);
+      if(node.left) queue.push(node.left);
+      if(node.right) queue.push(node.right);
+    }
+    return data;
   }
 
   DFSPreOrder() {
@@ -110,6 +126,17 @@ class BST {
       if(node.left) traverse(node.left);
       if(node.right) traverse(node.right);
       data.push(node.val)
+    }
+    traverse(this.root);
+    return data;
+  }
+
+  DFSInOrder() {
+    var data = [];
+    function traverse(node){
+      if(node.left) traverse(node.left);
+      data.push(node.val)
+      if(node.right) traverse(node.right);
     }
     traverse(this.root);
     return data;
